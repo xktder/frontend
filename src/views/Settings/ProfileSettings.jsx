@@ -95,13 +95,13 @@ const ProfileSettings = () => {
 
       setPhotoURL(url)
       showSuccess({
-        title: 'Photo Updated',
-        message: 'Your profile photo has been updated successfully!',
+        title: '照片已更新',
+        message: '您的个人资料照片已成功更新！',
       })
     } catch (err) {
       showError({
-        title: 'Upload Failed',
-        message: 'Failed to upload your photo. Please try again.',
+        title: '上传失败',
+        message: '无法上传您的照片。请重试。',
       })
     } finally {
       setIsUploading(false)
@@ -121,19 +121,19 @@ const ProfileSettings = () => {
 
       if (response.ok) {
         showSuccess({
-          title: 'Profile Updated',
-          message: 'Your profile information has been saved successfully!',
+          title: '个人资料已更新',
+          message: '您的个人资料信息已成功保存！',
         })
       } else {
-        throw new Error('Failed to update profile')
+        throw new Error('更新个人资料失败')
       }
     } catch (err) {
       console.log(err)
 
       showError({
-        title: 'Update Failed',
+        title: '更新失败',
         message:
-          'Unable to update your profile. Please check your connection and try again.',
+          '无法更新您的个人资料。请检查您的网络连接并重试。',
       })
     } finally {
       setIsSaving(false)
@@ -143,10 +143,10 @@ const ProfileSettings = () => {
   // Helper to resolve photoURL with baseURL if needed
 
   return (
-    <SettingsLayout title='Profile Settings'>
+    <SettingsLayout title='个人资料设置'>
       <div className='grid gap-4 py-4' id='profile'>
         <Typography level='body-md'>
-          Update your display name and profile photo.
+          更新您的显示名称和个人资料照片。
         </Typography>
         <Card
           sx={{
@@ -166,7 +166,7 @@ const ProfileSettings = () => {
               loading={isUploading}
               sx={{ mb: 1 }}
             >
-              Change Photo
+              更改照片
             </Button>
             <input
               ref={fileInputRef}
@@ -230,7 +230,7 @@ const ProfileSettings = () => {
                 size='md'
                 sx={{ mr: 1 }}
               >
-                Save
+                保存
               </Button>
               <Button
                 onClick={() => {
@@ -240,24 +240,24 @@ const ProfileSettings = () => {
                 variant='soft'
                 color='neutral'
               >
-                Cancel
+                取消
               </Button>
             </Box>
           </ModalDialog>
         </Modal>
         <Box sx={{ maxWidth: 400, mt: 3 }}>
           <Typography level='body-sm' sx={{ mb: 0.5 }}>
-            Display Name
+            显示名称
           </Typography>
           <Input
             value={displayName}
             onChange={e => setDisplayName(e.target.value)}
-            placeholder='Enter your display name'
+            placeholder='输入您的显示名称'
             sx={{ mb: 2 }}
           />
 
           <Typography level='body-sm' sx={{ mb: 0.5 }}>
-            Timezone
+            时区
           </Typography>
           <Autocomplete
             value={timezone}
@@ -286,7 +286,7 @@ const ProfileSettings = () => {
                 )
               })
             }}
-            placeholder='Select your timezone'
+            placeholder='选择您的时区'
             sx={{ mb: 2 }}
           />
 
@@ -297,7 +297,7 @@ const ProfileSettings = () => {
             loading={isSaving}
             sx={{ width: 120 }}
           >
-            Save
+            保存
           </Button>
         </Box>
       </div>

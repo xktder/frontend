@@ -104,7 +104,7 @@ const TasksByAssigneeCard = ({ chores = [] }) => {
         }}
       >
         <Typography level='body-sm' color='neutral'>
-          Loading tasks by assignee...
+          正在加载按执行者分配的任务...
         </Typography>
       </Sheet>
     )
@@ -129,7 +129,7 @@ const TasksByAssigneeCard = ({ chores = [] }) => {
       >
         <Person sx={{ fontSize: 48, opacity: 0.3, mb: 1 }} />
         <Typography level='body-sm' color='neutral'>
-          No assigned tasks found
+          未找到已分配的任务
         </Typography>
       </Sheet>
     )
@@ -160,7 +160,7 @@ const TasksByAssigneeCard = ({ chores = [] }) => {
           }}
         >
           <BarChart color='' />
-          <Typography level='title-md'>Tasks by Assignee</Typography>
+          <Typography level='title-md'>按执行者分配的任务</Typography>
         </Box>
       </Box>
 
@@ -177,22 +177,22 @@ const TasksByAssigneeCard = ({ chores = [] }) => {
         {[
           {
             key: 'inProgress',
-            label: 'In Progress',
+            label: '进行中',
             color: getStatusColor('inProgress'),
           },
           {
             key: 'overdue',
-            label: 'Overdue',
+            label: '已过期',
             color: getStatusColor('overdue'),
           },
           {
             key: 'scheduled',
-            label: 'Scheduled',
+            label: '已安排',
             color: getStatusColor('scheduled'),
           },
           {
             key: 'pendingReview',
-            label: 'Pending Review',
+            label: '待审核',
             color: getStatusColor('pendingReview'),
           },
         ].map(status => (

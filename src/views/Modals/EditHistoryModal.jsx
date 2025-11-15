@@ -8,22 +8,44 @@ import ConfirmationModal from './Inputs/ConfirmationModal'
 function EditHistoryModal({ config, historyRecord }) {
   const { ResponsiveModal } = useResponsiveModal()
 
+  // 初始化状态，提供合理的默认值
+  const [completedDate, setCompletedDate] = useState(() => {
+    if (historyRecord && historyRecord.completedDate) {
+      return moment(historyRecord.completedDate).format('YYYY-MM-DDTHH:mm')
+    }
+    return ''
+  })
+  
+  const [dueDate, setDueDate] = useState(() => {
+    if (historyRecord && historyRecord.dueDate) {
+      return moment(historyRecord.dueDate).format('YYYY-MM-DDTHH:mm')
+    }
+    return ''
+  })
+  
+  const [notes, setNotes] = useState(() => {
+    return historyRecord ? (historyRecord.notes || '') : ''
+  })
+  
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  
+  // 当 historyRecord 变化时更新状态
   useEffect(() => {
-    setCompletedDate(
-      moment(historyRecord.performedAt).format('YYYY-MM-DDTHH:mm'),
-    )
-    setDueDate(moment(historyRecord.dueDate).format('YYYY-MM-DDTHH:mm'))
-    setNotes(historyRecord.notes)
+    if (historyRecord) {
+      setCompletedDate(
+        historyRecord.performedAt 
+          ? moment(historyRecord.performedAt).format('YYYY-MM-DDTHH:mm')
+          : ''
+      )
+      setDueDate(
+        historyRecord.dueDate 
+          ? moment(historyRecord.dueDate).format('YYYY-MM-DDTHH:mm')
+          : ''
+      )
+      setNotes(historyRecord.notes || '')
+    }
   }, [historyRecord])
 
-  const [completedDate, setCompletedDate] = useState(
-    moment(historyRecord.completedDate).format('YYYY-MM-DDTHH:mm'),
-  )
-  const [dueDate, setDueDate] = useState(
-    moment(historyRecord.dueDate).format('YYYY-MM-DDTHH:mm'),
-  )
-  const [notes, setNotes] = useState(historyRecord.notes)
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   return (
     <ResponsiveModal
       open={config?.isOpen}
@@ -32,9 +54,9 @@ function EditHistoryModal({ config, historyRecord }) {
       // fullWidth={true}
     >
       <Typography level='h4' mb={1}>
-        Edit History
+        编辑历史记录
       </Typography>
-      <FormLabel>Due Date</FormLabel>
+      <FormLabel>截止日期</FormLabel>
       <Input
         type='datetime-local'
         value={dueDate}
@@ -42,7 +64,7 @@ function EditHistoryModal({ config, historyRecord }) {
           setDueDate(e.target.value)
         }}
       />
-      <FormLabel>Completed Date</FormLabel>
+      <FormLabel>完成日期</FormLabel>
       <Input
         type='datetime-local'
         value={completedDate}
@@ -50,13 +72,13 @@ function EditHistoryModal({ config, historyRecord }) {
           setCompletedDate(e.target.value)
         }}
       />
-      <FormLabel>Note</FormLabel>
+      <FormLabel>备注</FormLabel>
       <Input
         fullWidth
         multiline
-        label='Additional Notes'
-        placeholder='Additional Notes'
-        value={notes}
+        label='附加备注'
+        placeholder='附加备注'
+        value={notes || ''}
         onChange={e => {
           if (e.target.value.trim() === '') {
             setNotes(null)
@@ -76,19 +98,19 @@ function EditHistoryModal({ config, historyRecord }) {
           size='lg'
           onClick={() =>
             config.onSave({
-              id: historyRecord.id,
-              performedAt: moment(completedDate).toISOString(),
-              dueDate: moment(dueDate).toISOString(),
+              id: historyRecord?.id,
+              performedAt: completedDate ? moment(completedDate).toISOString() : null,
+              dueDate: dueDate ? moment(dueDate).toISOString() : null,
               notes,
             })
           }
           fullWidth
           sx={{ mr: 1 }}
         >
-          Save
+          保存
         </Button>
         <Button fullWidth size='lg' onClick={config.onClose} variant='outlined'>
-          Cancel
+          取消
         </Button>
       </Box>
       <ConfirmationModal
@@ -96,14 +118,14 @@ function EditHistoryModal({ config, historyRecord }) {
           isOpen: isDeleteModalOpen,
           onClose: isConfirm => {
             if (isConfirm) {
-              config.onDelete(historyRecord.id)
+              config.onDelete(historyRecord?.id)
             }
             setIsDeleteModalOpen(false)
           },
-          title: 'Delete History',
-          message: 'Are you sure you want to delete this history?',
-          confirmText: 'Delete',
-          cancelText: 'Cancel',
+          title: '删除历史记录',
+          message: '您确定要删除这条历史记录吗？',
+          confirmText: '删除',
+          cancelText: '取消',
         }}
       />
     </ResponsiveModal>

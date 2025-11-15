@@ -81,15 +81,15 @@ const getNotificationText = (choreName, template = {}) => {
   // Determine notification type based on template value
   const getNotificationType = () => {
     if (!template || template.value === undefined) {
-      return 'due'
+      return '到期'
     }
 
     if (template.value < 0) {
-      return 'reminder'
+      return '提醒'
     } else if (template.value === 0) {
-      return 'due'
+      return '到期'
     } else {
-      return 'overdue'
+      return '逾期'
     }
   }
 
@@ -105,7 +105,7 @@ const getNotificationText = (choreName, template = {}) => {
   // Generate time-based descriptive text
   const getTimeDescription = () => {
     if (!template || !template.value || !template.unit) {
-      return 'soon'
+      return '即将到期'
     }
 
     const { value, unit } = template
@@ -113,46 +113,46 @@ const getNotificationText = (choreName, template = {}) => {
 
     switch (unit) {
       case 'm':
-        if (absValue === 1) return value < 0 ? 'in 1 minute' : '1 minute ago'
+        if (absValue === 1) return value < 0 ? '1分钟后' : '1分钟前'
         if (absValue < 60)
           return value < 0
-            ? `in ${absValue} minutes`
-            : `${absValue} minutes ago`
+            ? `${absValue}分钟后`
+            : `${absValue}分钟前`
         break
       case 'h':
-        if (absValue === 1) return value < 0 ? 'in 1 hour' : '1 hour ago'
+        if (absValue === 1) return value < 0 ? '1小时后' : '1小时前'
         if (absValue < 24)
-          return value < 0 ? `in ${absValue} hours` : `${absValue} hours ago`
+          return value < 0 ? `${absValue}小时后` : `${absValue}小时前`
         break
       case 'd':
-        if (absValue === 1) return value < 0 ? 'tomorrow' : 'yesterday'
-        if (absValue === 7) return value < 0 ? 'next week' : 'last week'
+        if (absValue === 1) return value < 0 ? '明天' : '昨天'
+        if (absValue === 7) return value < 0 ? '下周' : '上周'
         if (absValue < 7)
-          return value < 0 ? `in ${absValue} days` : `${absValue} days ago`
+          return value < 0 ? `${absValue}天后` : `${absValue}天前`
         if (absValue < 30) {
           const weeks = Math.round(absValue / 7)
-          return value < 0 ? `in ${weeks} weeks` : `${weeks} weeks ago`
+          return value < 0 ? `${weeks}周后` : `${weeks}周前`
         }
         break
       default:
-        return value < 0 ? `in ${absValue} ${unit}` : `${absValue} ${unit} ago`
+        return value < 0 ? `${absValue}${unit}后` : `${absValue}${unit}前`
     }
 
-    return value < 0 ? `in ${absValue} ${unit}` : `${absValue} ${unit} ago`
+    return value < 0 ? `${absValue}${unit}后` : `${absValue}${unit}前`
   }
 
   const messages = {
     reminder: {
       title: `📋 ${truncatedName}`,
-      body: `Reminder: Due ${getTimeDescription()}`,
+      body: `提醒：${getTimeDescription()}截止`,
     },
     due: {
       title: `🔔 ${truncatedName}`,
-      body: 'Due now - Time to get started!',
+      body: '任务已到期，请立即处理！',
     },
     overdue: {
       title: `❗ ${truncatedName}`,
-      body: `Overdue ${getTimeDescription()} - Complete when you can`,
+      body: `已过期${getTimeDescription()}，请尽快完成`,
     },
   }
 

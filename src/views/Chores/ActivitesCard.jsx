@@ -42,11 +42,11 @@ const ActivityItem = ({ activity, members }) => {
     const diffInDays = now.diff(completed, 'days')
 
     if (diffInHours < 1) {
-      return 'Just now'
+      return '刚刚'
     } else if (diffInHours < 24) {
-      return `${diffInHours}h ago`
+      return `${diffInHours}小时前`
     } else if (diffInDays < 7) {
-      return `${diffInDays}d ago`
+      return `${diffInDays}天前`
     } else {
       return completed.format('MMM DD')
     }
@@ -56,7 +56,7 @@ const ActivityItem = ({ activity, members }) => {
     if (activity.status === 0) {
       return {
         color: 'primary',
-        text: 'Started',
+        text: '已开始',
         icon: <Timelapse />,
       }
     } else if (activity.status === 1) {
@@ -67,32 +67,32 @@ const ActivityItem = ({ activity, members }) => {
       if (wasOnTime) {
         return {
           color: 'success',
-          text: 'Done',
+          text: '已完成',
           icon: <CheckCircle />,
         }
       } else {
         return {
           color: 'primary',
-          text: 'Late',
+          text: '迟到',
           icon: <WatchLater />,
         }
       }
     } else if (activity.status === 2) {
       return {
         color: 'warning',
-        text: 'Skipped',
+        text: '已跳过',
         icon: <Redo />,
       }
     } else if (activity.status === 3) {
       return {
         color: 'neutral',
-        text: 'Pending Approval',
+        text: '待审批',
         icon: <HourglassEmpty />,
       }
     } else if (activity.status === 4) {
       return {
         color: 'danger',
-        text: 'Rejected',
+        text: '已拒绝',
         icon: <ThumbDown />,
       }
     }
@@ -100,7 +100,7 @@ const ActivityItem = ({ activity, members }) => {
     // Fallback for completed status
     return {
       color: 'success',
-      text: 'Completed',
+      text: '已完成',
       icon: <CheckCircle />,
     }
   }
@@ -216,7 +216,7 @@ const groupActivitiesByDate = activities => {
   return groups
 }
 
-const ActivitiesCard = ({ title = 'Recent Activities' }) => {
+const ActivitiesCard = ({ title = '最近活动' }) => {
   // Use hooks to fetch data
   const {
     data: choresData,
@@ -274,7 +274,7 @@ const ActivitiesCard = ({ title = 'Recent Activities' }) => {
           }}
         >
           <Typography level='body-sm' color='neutral'>
-            Loading activities...
+            正在加载活动...
           </Typography>
         </Box>
       </Sheet>
@@ -333,7 +333,7 @@ const ActivitiesCard = ({ title = 'Recent Activities' }) => {
           }}
         >
           <EventNote sx={{ fontSize: 48, opacity: 0.3, mb: 1 }} />
-          <Typography level='body-sm'>No recent activities</Typography>
+          <Typography level='body-sm'>暂无最近活动</Typography>
         </Box>
       </Sheet>
     )
@@ -395,9 +395,9 @@ const ActivitiesCard = ({ title = 'Recent Activities' }) => {
 
           let dateLabel
           if (isToday) {
-            dateLabel = 'Today'
+            dateLabel = '今天'
           } else if (isYesterday) {
-            dateLabel = 'Yesterday'
+            dateLabel = '昨天'
           } else {
             dateLabel = moment(date).format('MMM DD')
           }

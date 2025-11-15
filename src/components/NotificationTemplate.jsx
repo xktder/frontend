@@ -16,26 +16,26 @@ import { useCallback, useEffect, useState } from 'react'
 import { NOTIFICATION_TYPE, TASK_COLOR } from '../utils/Colors'
 
 const timeUnits = [
-  { label: 'Mins', value: 'm' },
-  { label: 'Hours', value: 'h' },
-  { label: 'Days', value: 'd' },
+  { label: '分钟', value: 'm' },
+  { label: '小时', value: 'h' },
+  { label: '天', value: 'd' },
 ]
 
 const timingOptions = [
-  { label: 'Before', value: 'before' },
-  { label: 'On Due', value: 'ondue' },
-  { label: 'After', value: 'after' },
+  { label: '之前', value: 'before' },
+  { label: '到期时', value: 'ondue' },
+  { label: '之后', value: 'after' },
 ]
 
 function getRelativeLabel(notification) {
   const { value, unit } = notification
   const numericValue = Number(value)
   if (numericValue === 0) {
-    return 'On due date'
+    return '到期时'
   }
-  const unitName = unit === 'm' ? 'minutes' : unit === 'h' ? 'hours' : 'days'
+  const unitName = unit === 'm' ? '分钟' : unit === 'h' ? '小时' : '天'
   const absValue = Math.abs(numericValue)
-  return `${absValue} ${unitName} ${numericValue < 0 ? 'before' : 'after'} due`
+  return `到期${absValue} ${unitName}${numericValue < 0 ? '前' : '后'}`
 }
 
 // Helper functions to convert between internal value and UI representation
@@ -179,7 +179,7 @@ const NotificationTemplate = ({
 
       if (existingOnDue !== -1) {
         setError(
-          'Only one notification can be set to "On Due". Please choose a different timing.',
+          '只能设置一个"到期时"通知。请选择其他时间。',
         )
         return
       }
@@ -187,7 +187,7 @@ const NotificationTemplate = ({
 
     if (isDuplicate(updatedNotification, idx)) {
       setError(
-        'This notification setting already exists. Please use a different timing.',
+        '此通知设置已存在。请使用不同时间。',
       )
       return
     }
@@ -217,7 +217,7 @@ const NotificationTemplate = ({
 
       case 'due':
         if (notifications.some(n => Number(n.value) === 0)) {
-          setError('Only one "Due Alert" notification is allowed.')
+          setError('只允许一个"到期提醒"通知。')
           return
         }
         newNotification = { value: 0, unit: 'm' }
@@ -237,7 +237,7 @@ const NotificationTemplate = ({
       newNotification = suggestions.find(suggestion => !isDuplicate(suggestion))
 
       if (!newNotification) {
-        setError(`All common ${type} times are already configured.`)
+        setError(`所有常用${type}时间都已配置。`)
         return
       }
     }
@@ -300,7 +300,7 @@ const NotificationTemplate = ({
     return (
       <Box sx={{ mt: 3, mb: 2 }}>
         <Typography level={'body-md'} sx={{ mb: 1 }}>
-          Notification Timeline
+          通知时间线
         </Typography>
         <Box
           sx={{
@@ -354,7 +354,7 @@ const NotificationTemplate = ({
                   fontSize: '0.6rem',
                 }}
               >
-                Due Date
+                到期日
               </Typography>
             </Box>
 
@@ -657,7 +657,7 @@ const NotificationTemplate = ({
             },
           }}
         >
-          Reminder
+          提醒
         </Button>
         <Button
           onClick={() => addSmartNotification('due')}
@@ -679,7 +679,7 @@ const NotificationTemplate = ({
             },
           }}
         >
-          Due Alert
+          到期提醒
         </Button>
         <Button
           onClick={() => addSmartNotification('followup')}
@@ -698,7 +698,7 @@ const NotificationTemplate = ({
             },
           }}
         >
-          Follow-up
+          跟进
         </Button>
       </Box>
       {showSaveDefault && (
@@ -731,7 +731,7 @@ const NotificationTemplate = ({
               setShowSaveDefault(false)
             }}
           >
-            Remember for Future Tasks
+            记住用于未来任务
           </Button>
         </Box>
       )}

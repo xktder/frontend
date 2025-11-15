@@ -30,12 +30,12 @@ import NavBarLink from './NavBarLink'
 const links = [
   {
     to: '/chores',
-    label: 'All Tasks',
+    label: '所有任务',
     icon: <Inbox />,
   },
   {
     to: '/archived',
-    label: 'Archived',
+    label: '存档',
     icon: <Archive />,
   },
 
@@ -46,22 +46,22 @@ const links = [
   // },
   {
     to: '/things',
-    label: 'Things',
+    label: '事物',
     icon: <Widgets />,
   },
   {
     to: 'labels',
-    label: 'Labels',
+    label: '标签',
     icon: <ListAlt />,
   },
   {
     to: 'activities',
-    label: 'Activities',
+    label: '活动',
     icon: <History />,
   },
   {
     to: 'points',
-    label: 'Points',
+    label: '积分',
     icon: <Toll />,
   },
   // {
@@ -81,7 +81,7 @@ const links = [
   // },
   {
     to: '/settings',
-    label: 'Settings',
+    label: '设置',
     icon: <SettingsOutlined />,
   },
 ]

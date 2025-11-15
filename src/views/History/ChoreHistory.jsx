@@ -53,16 +53,16 @@ const ChoreHistory = () => {
 
   const handleDelete = historyEntry => {
     showConfirmation(
-      `Are you sure you want to delete this history record?`,
-      'Delete History Record',
+      `您确定要删除这条历史记录吗？`,
+      '删除历史记录',
       () => {
         deleteChoreHistory.mutate({
           choreId,
           historyId: historyEntry.id,
         })
       },
-      'Delete',
-      'Cancel',
+      '删除',
+      '取消',
       'danger',
     )
   }
@@ -85,7 +85,7 @@ const ChoreHistory = () => {
   }, [choreHistory, performers])
 
   const updateHistoryInfo = (histories, userHistories, performers) => {
-    // average delay for task completaion from due date:
+    // average delay for task completion from due date:
 
     const averageDelay =
       histories.reduce((acc, chore) => {
@@ -115,42 +115,42 @@ const ChoreHistory = () => {
     const historyInfo = [
       {
         icon: <Checklist />,
-        text: 'All Completed',
-        subtext: `${histories.filter(h => h.status === ChoreHistoryStatus.COMPLETED).length} times`,
+        text: '全部完成',
+        subtext: `${histories.filter(h => h.status === ChoreHistoryStatus.COMPLETED).length} 次`,
       },
       {
         icon: <TrendingUp />,
-        text: 'Average Timing',
+        text: '平均用时',
         subtext: moment.duration(averageDelayMoment).isValid()
           ? moment.duration(averageDelayMoment).humanize()
-          : 'On time',
+          : '准时',
       },
       {
         icon: <Timelapse />,
-        text: 'Longest Delay',
+        text: '最长延误',
         subtext: moment.duration(maxDelayMoment).isValid()
           ? moment.duration(maxDelayMoment).humanize()
-          : 'Never late',
+          : '从不迟到',
       },
       {
         icon: <Star />,
-        text: 'Completed Most',
+        text: '完成最多',
         subtext: `${
           performers.find(p => p.userId === Number(userCompletedByMost))
-            ?.displayName || 'Unknown'
+            ?.displayName || '未知'
         }`,
       },
       {
         icon: <Group />,
-        text: 'Members Involved',
-        subtext: `${Object.keys(userHistories).length} members`,
+        text: '参与成员',
+        subtext: `${Object.keys(userHistories).length} 人`,
       },
       {
         icon: <Analytics />,
-        text: 'Last Completed',
+        text: '最后完成',
         subtext: `${
           performers.find(p => p.userId === Number(histories[0].completedBy))
-            ?.displayName || 'Unknown'
+            ?.displayName || '未知'
         }`,
       },
     ]
@@ -184,14 +184,13 @@ const ChoreHistory = () => {
         />
 
         <Typography level='h3' gutterBottom>
-          No History Yet
+          暂无历史记录
         </Typography>
         <Typography level='body1'>
-          You haven't completed any tasks. Once you start finishing tasks,
-          they'll show up here.
+          您尚未完成任何任务。开始完成任务后，它们会显示在这里。
         </Typography>
         <Button variant='soft' sx={{ mt: 2 }}>
-          <Link to='/chores'>Go back to chores</Link>
+          <Link to='/chores'>返回任务列表</Link>
         </Button>
       </Container>
     )
@@ -208,7 +207,7 @@ const ChoreHistory = () => {
             level='title-md'
             sx={{ fontWeight: 'lg', color: 'text.primary' }}
           >
-            Task Summary
+            任务摘要
           </Typography>
         </Box>
         <Grid container spacing={0.5} sx={{ mb: 2 }}>
@@ -284,7 +283,7 @@ const ChoreHistory = () => {
           level='title-md'
           sx={{ fontWeight: 'lg', color: 'text.primary' }}
         >
-          Task Activity
+          任务活动
         </Typography>
       </Box>
       <Sheet variant='plain' sx={{ borderRadius: 'sm', boxShadow: 'md' }}>

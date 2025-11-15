@@ -140,12 +140,12 @@ const ChoreView = () => {
       {
         size: 6,
         icon: <PeopleAlt />,
-        title: 'Assignment',
-        text: `Assigned: ${
+        title: '任务分配',
+        text: `分配给: ${
           performers.find(p => p.userId === chore.assignedTo)?.displayName ||
           'N/A'
         }`,
-        subtext: ` Last: ${
+        subtext: ` 上次完成: ${
           chore.lastCompletedDate
             ? performers.find(p => p.userId === chore.lastCompletedBy)
                 ?.displayName
@@ -155,11 +155,11 @@ const ChoreView = () => {
       {
         size: 6,
         icon: <CalendarMonth />,
-        title: 'Schedule',
-        text: `Due: ${
+        title: '时间安排',
+        text: `截止: ${
           chore.nextDueDate ? moment(chore.nextDueDate).fromNow() : 'N/A'
         }`,
-        subtext: `Last: ${
+        subtext: `上次完成: ${
           chore.lastCompletedDate
             ? moment(chore.lastCompletedDate).fromNow()
             : 'N/A'
@@ -168,14 +168,14 @@ const ChoreView = () => {
       {
         size: 6,
         icon: <Checklist />,
-        title: 'Statistics',
-        text: `Completed: ${chore.totalCompletedCount || 0} times`,
+        title: '统计信息',
+        text: `已完成: ${chore.totalCompletedCount || 0} 次`,
       },
       {
         size: 6,
         icon: <Person />,
-        title: 'Details',
-        subtext: `Created By: ${
+        title: '详细信息',
+        subtext: `创建者: ${
           performers.find(p => p.userId === chore.createdBy)?.displayName ||
           'N/A'
         }`,
@@ -408,7 +408,7 @@ const ChoreView = () => {
         </Typography>
         <Chip startDecorator={<CalendarMonth />} size='md' sx={{ mb: 1 }}>
           {chore.nextDueDate
-            ? `Due at ${moment(chore.nextDueDate).format('MM/DD/YYYY hh:mm A')}`
+            ? `截止于 ${moment(chore.nextDueDate).format('MM/DD/YYYY hh:mm A')}`
             : 'N/A'}
         </Chip>
         <Box
@@ -573,13 +573,13 @@ const ChoreView = () => {
                 }}
                 onClick={() => {
                   handleUpdatePriority({
-                    name: 'No Priority',
+                    name: '无优先级',
                     value: 0,
                   })
                   setChorePriority(null)
                 }}
               >
-                No Priority
+                无优先级
               </MenuItem>
             </Menu>
           </Dropdown>
@@ -600,7 +600,7 @@ const ChoreView = () => {
             }}
           >
             <History />
-            History
+            历史记录
           </Button>
           <Button
             size='sm'
@@ -619,14 +619,14 @@ const ChoreView = () => {
             }}
           >
             <Edit />
-            Edit
+            编辑
           </Button>
         </Box>
 
         {chore.description && (
           <>
             <Typography level='title-md' sx={{ mb: 1 }}>
-              Description :
+              任务描述:
             </Typography>
 
             <Sheet
@@ -666,7 +666,7 @@ const ChoreView = () => {
         {chore.notes && (
           <>
             <Typography level='title-md' sx={{ mb: 1 }}>
-              Previous note:
+              上次备注:
             </Typography>
             <Sheet variant='plain' sx={{ p: 2, borderRadius: 'lg', mb: 1 }}>
               <Typography level='body-md' sx={{ mb: 1 }}>
@@ -678,7 +678,7 @@ const ChoreView = () => {
         {chore.subTasks && chore.subTasks.length > 0 && (
           <Box sx={{ p: 0, m: 0, mb: 2 }}>
             <Typography level='title-md' sx={{ mb: 1 }}>
-              Subtasks :
+              子任务:
             </Typography>
             <Sheet
               variant='plain'
@@ -716,7 +716,7 @@ const ChoreView = () => {
         variant='soft'
       >
         <Typography level='body-md' sx={{ mb: 1 }}>
-          Task Actions
+          任务操作
         </Typography>
 
         <FormControl size='sm'>
@@ -739,7 +739,7 @@ const ChoreView = () => {
                   alignItems: 'center',
                 }}
               >
-                Add a note
+                添加备注
               </Typography>
             }
           />
@@ -747,13 +747,13 @@ const ChoreView = () => {
         {note !== null && (
           <Box sx={{ mb: 1 }}>
             <Typography level='body-sm' sx={{ mb: 1 }}>
-              Additional Notes:
+              附加备注:
             </Typography>
             <RichTextEditor
               value={note || ''}
               onChange={setNote}
               entityType={'chore_completion_note'}
-              placeholder='Add a note about the completion...'
+              placeholder='添加关于完成情况的备注...'
             />
           </Box>
         )}
@@ -786,7 +786,7 @@ const ChoreView = () => {
                   alignItems: 'center',
                 }}
               >
-                Set custom completion time
+                设置自定义完成时间
               </Typography>
             }
           />
@@ -835,7 +835,7 @@ const ChoreView = () => {
                       flex: 1,
                     }}
                   >
-                    Approve
+                    批准
                   </Button>
                   <Button
                     fullWidth
@@ -847,7 +847,7 @@ const ChoreView = () => {
                       flex: 1,
                     }}
                   >
-                    <Box>Reject</Box>
+                    <Box>拒绝</Box>
                   </Button>
                 </>
               ) : (
@@ -858,7 +858,7 @@ const ChoreView = () => {
                   color='neutral'
                   startDecorator={<HourglassEmpty />}
                 >
-                  <Box>Pending Approval</Box>
+                  <Box>等待审批</Box>
                 </Button>
               )
             ) : (
@@ -880,7 +880,7 @@ const ChoreView = () => {
                     flex: 4,
                   }}
                 >
-                  <Box>Mark as done</Box>
+                  <Box>标记为已完成</Box>
                 </Button>
 
                 <Button
@@ -889,12 +889,12 @@ const ChoreView = () => {
                   onClick={() => {
                     setConfirmModelConfig({
                       isOpen: true,
-                      title: 'Skip Task',
+                      title: '跳过任务',
 
-                      message: 'Are you sure you want to skip this task?',
+                      message: '您确定要跳过这个任务吗?',
 
-                      confirmText: 'Skip',
-                      cancelText: 'Cancel',
+                      confirmText: '跳过',
+                      cancelText: '取消',
                       onClose: confirmed => {
                         if (confirmed) {
                           handleSkippingTask()
@@ -912,7 +912,7 @@ const ChoreView = () => {
                     flex: 1,
                   }}
                 >
-                  <Box>Skip</Box>
+                  <Box>跳过</Box>
                 </Button>
               </>
             )}
@@ -956,7 +956,7 @@ const ChoreView = () => {
                 flex: 1,
               }}
             >
-              Start
+              开始
             </Button>
           )}
         </Box>
@@ -978,12 +978,12 @@ const ChoreView = () => {
               color='danger'
               startDecorator={<CancelScheduleSend />}
             >
-              Cancel
+              取消
             </Button>
           }
         >
           <Typography level='body-md' textAlign={'center'}>
-            Task will be marked as completed in {secondsLeftToCancel} seconds
+            任务将在 {secondsLeftToCancel} 秒后标记为已完成
           </Typography>
         </Snackbar>
         <ConfirmationModal config={confirmModelConfig} />

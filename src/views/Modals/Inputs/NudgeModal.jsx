@@ -108,32 +108,27 @@ function NudgeModal({ config }) {
       unmountDelay={250}
     >
       <Typography level='h4' mb={2}>
-        Send Nudge
+        发送提醒
       </Typography>
 
       <Typography level='body-md' mb={2}>
-        Send a gentle reminder to the assignee about this task. You can
-        customize the message and choose who gets notified.
+        向任务执行者发送温和的提醒。您可以自定义消息并选择通知对象。
       </Typography>
 
       {!isOfficialInstance && (
         <Alert color='warning' sx={{ mb: 2 }}>
           <Typography level='body-sm'>
-            <strong>Heads up!</strong>This feature avaiable on Donetick Cloud!
-            Since you're using a self-hosted instance, nudges will requires you
-            to setup Google cloud account and Firebase Cloud Messaging (FCM).
-            and build the Android or the iOS app by yourself.
+            <strong>请注意！</strong>此功能在Donetick云服务上可用！由于您使用的是自托管实例，提醒功能需要您设置Google云账户和Firebase云消息(FCM)，并自行构建Android或iOS应用程序。
             <br />
-            Will update if we come up with a solution to make this easier for to
-            configure. for selfhosters
+            如果我们提出更简便的自托管配置方案，将会及时更新。
           </Typography>
         </Alert>
       )}
 
       <FormControl mb={2}>
-        <FormLabel>Custom Message (optional)</FormLabel>
+        <FormLabel>自定义消息（可选）</FormLabel>
         <Textarea
-          placeholder='Add a personal message with your nudge...'
+          placeholder='添加您的个人提醒消息...'
           value={message}
           onChange={e => setMessage(e.target.value)}
           minRows={3}
@@ -143,10 +138,9 @@ function NudgeModal({ config }) {
 
       <FormControl orientation='horizontal' sx={{ mb: 3 }}>
         <Box sx={{ flex: 1 }}>
-          <FormLabel>Notify All Assignees</FormLabel>
+          <FormLabel>通知所有执行者</FormLabel>
           <Typography level='body-sm' color='text.secondary'>
-            If enabled, all members who can see this task will be notified.
-            Otherwise, only the assigned person will receive the nudge.
+            如果启用，所有可以查看此任务的成员都会收到通知。否则，只有指定的执行者会收到提醒。
           </Typography>
         </Box>
         <Switch
@@ -166,7 +160,7 @@ function NudgeModal({ config }) {
             <KeyboardShortcutHint shortcut='Y' show={showKeyboardShortcuts} />
           }
         >
-          Send Nudge
+          发送提醒
         </Button>
 
         <Button
@@ -178,7 +172,7 @@ function NudgeModal({ config }) {
             <KeyboardShortcutHint shortcut='X' show={showKeyboardShortcuts} />
           }
         >
-          Cancel
+          取消
         </Button>
       </Box>
     </ResponsiveModal>

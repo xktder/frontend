@@ -235,7 +235,7 @@ const ChoreActionMenu = ({
           }}
         >
           <NoteAdd />
-          Complete with note
+          带备注完成
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -245,7 +245,7 @@ const ChoreActionMenu = ({
           }}
         >
           <Update />
-          Complete in past
+          标记为过去已完成
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -254,7 +254,7 @@ const ChoreActionMenu = ({
           }}
         >
           <SwitchAccessShortcut />
-          Skip to next due date
+          跳过到下一个截止日期
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -264,7 +264,7 @@ const ChoreActionMenu = ({
           }}
         >
           <RecordVoiceOver />
-          Delegate to someone else
+          委派给其他人
         </MenuItem>
         {isOfficialInstance && (
           <MenuItem
@@ -275,7 +275,7 @@ const ChoreActionMenu = ({
             }}
           >
             <Notifications />
-            Send nudge
+            发送提醒
           </MenuItem>
         )}
         <Divider />
@@ -286,7 +286,7 @@ const ChoreActionMenu = ({
           }}
         >
           <ManageSearch />
-          History
+          历史记录
         </MenuItem>
         <Divider />
         <MenuItem
@@ -379,7 +379,7 @@ const ChoreActionMenu = ({
           }}
         >
           <MoreTime />
-          Change due date
+          更改截止日期
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -389,7 +389,7 @@ const ChoreActionMenu = ({
           }}
         >
           <Nfc />
-          Write to NFC
+          写入NFC
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -398,7 +398,7 @@ const ChoreActionMenu = ({
           }}
         >
           <Edit />
-          Edit
+          编辑
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -407,7 +407,7 @@ const ChoreActionMenu = ({
           }}
         >
           <CopyAll />
-          Clone
+          克隆
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -416,7 +416,7 @@ const ChoreActionMenu = ({
           }}
         >
           <ViewCarousel />
-          View
+          查看
         </MenuItem>
         <MenuItem
           onClick={e => {
@@ -426,7 +426,7 @@ const ChoreActionMenu = ({
           color='neutral'
         >
           {chore.isActive ? <Archive /> : <Unarchive />}
-          {chore.isActive ? 'Archive' : 'Unarchive'}
+          {chore.isActive ? '归档' : '取消归档'}
         </MenuItem>
         <Divider />
         <MenuItem
@@ -437,7 +437,7 @@ const ChoreActionMenu = ({
           color='danger'
         >
           <Delete />
-          Delete
+          删除
         </MenuItem>
       </Menu>
     </>

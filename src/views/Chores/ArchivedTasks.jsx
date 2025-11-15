@@ -73,8 +73,8 @@ const ArchivedTasks = () => {
           setFilteredChores(sortedChores)
         } catch (error) {
           showError({
-            title: 'Failed to load archived tasks',
-            message: 'Please try again later.',
+            title: '加载已归档任务失败',
+            message: '请稍后再试。',
           })
         } finally {
           setIsLoading(false)
@@ -231,8 +231,8 @@ const ArchivedTasks = () => {
       setFilteredChores(newFilteredChores)
 
       showSuccess({
-        title: 'Task Restored',
-        message: 'The task has been restored and is now active.',
+        title: '任务已恢复',
+        message: '任务已恢复，现在处于活动状态。',
       })
     }
   }
@@ -248,8 +248,8 @@ const ArchivedTasks = () => {
     setFilteredChores(newFilteredChores)
 
     showSuccess({
-      title: 'Task Deleted',
-      message: 'The archived task has been permanently deleted.',
+      title: '任务已删除',
+      message: '已归档任务已被永久删除。',
     })
   }
 
@@ -303,10 +303,10 @@ const ArchivedTasks = () => {
 
     setConfirmModelConfig({
       isOpen: true,
-      title: 'Restore Tasks',
-      confirmText: 'Restore',
-      cancelText: 'Cancel',
-      message: `Restore ${selectedData.length} task${selectedData.length > 1 ? 's' : ''} to active list?`,
+      title: '恢复任务',
+      confirmText: '恢复',
+      cancelText: '取消',
+      message: `恢复 ${selectedData.length} 个任务到活动列表？`,
       onClose: async isConfirmed => {
         if (isConfirmed === true) {
           try {
@@ -334,8 +334,8 @@ const ArchivedTasks = () => {
 
             if (restoredTasks.length > 0) {
               showSuccess({
-                title: '📤 Tasks Restored',
-                message: `Successfully restored ${restoredTasks.length} task${restoredTasks.length > 1 ? 's' : ''}.`,
+                title: '📤 任务已恢复',
+                message: `成功恢复 ${restoredTasks.length} 个任务。`,
               })
 
               // Remove restored tasks from archived list
@@ -352,16 +352,16 @@ const ArchivedTasks = () => {
 
             if (failedTasks.length > 0) {
               showError({
-                title: 'Some Tasks Failed',
-                message: `${failedTasks.length} task${failedTasks.length > 1 ? 's' : ''} could not be restored.`,
+                title: '部分任务恢复失败',
+                message: `${failedTasks.length} 个任务无法恢复。`,
               })
             }
 
             clearSelection()
           } catch (error) {
             showError({
-              title: 'Bulk Restore Failed',
-              message: 'An unexpected error occurred. Please try again.',
+              title: '批量恢复失败',
+              message: '发生意外错误。请重试。',
             })
           }
         }
@@ -376,10 +376,10 @@ const ArchivedTasks = () => {
 
     setConfirmModelConfig({
       isOpen: true,
-      title: 'Delete Archived Tasks',
-      confirmText: 'Delete',
-      cancelText: 'Cancel',
-      message: `Permanently delete ${selectedData.length} archived task${selectedData.length > 1 ? 's' : ''}?\n\nThis action cannot be undone.`,
+      title: '删除已归档任务',
+      confirmText: '删除',
+      cancelText: '取消',
+      message: `永久删除 ${selectedData.length} 个已归档任务？\n\n此操作无法撤销。`,
       onClose: async isConfirmed => {
         if (isConfirmed === true) {
           try {
@@ -397,8 +397,8 @@ const ArchivedTasks = () => {
 
             if (deletedTasks.length > 0) {
               showSuccess({
-                title: '🗑️ Tasks Deleted',
-                message: `Successfully deleted ${deletedTasks.length} task${deletedTasks.length > 1 ? 's' : ''}.`,
+                title: '🗑️ 任务已删除',
+                message: `成功删除 ${deletedTasks.length} 个任务。`,
               })
 
               const deletedIds = new Set(deletedTasks.map(c => c.id))
@@ -414,16 +414,16 @@ const ArchivedTasks = () => {
 
             if (failedTasks.length > 0) {
               showError({
-                title: 'Some Tasks Failed',
-                message: `${failedTasks.length} task${failedTasks.length > 1 ? 's' : ''} could not be deleted.`,
+                title: '部分任务删除失败',
+                message: `${failedTasks.length} 个任务无法删除。`,
               })
             }
 
             clearSelection()
           } catch (error) {
             showError({
-              title: 'Bulk Delete Failed',
-              message: 'An unexpected error occurred. Please try again.',
+              title: '批量删除失败',
+              message: '发生意外错误。请重试。',
             })
           }
         }
@@ -464,10 +464,10 @@ const ArchivedTasks = () => {
             level='h3'
             sx={{ fontWeight: 'lg', color: 'text.primary' }}
           >
-            Archived Tasks
+            已归档任务
           </Typography>
           <Typography level='body-sm' sx={{ color: 'text.secondary' }}>
-            View and manage tasks that have been archived or completed.
+            查看和管理已归档或已完成的任务。
           </Typography>
         </Stack>
       </Box>
@@ -512,7 +512,7 @@ const ArchivedTasks = () => {
       >
         <Input
           slotProps={{ input: { ref: searchInputRef } }}
-          placeholder='Search archived tasks'
+          placeholder='搜索已归档任务'
           value={searchTerm}
           fullWidth
           sx={{
@@ -558,8 +558,8 @@ const ArchivedTasks = () => {
           onClick={toggleViewMode}
           title={
             viewMode === 'default'
-              ? 'Switch to Compact View'
-              : 'Switch to Card View'
+              ? '切换到紧凑视图'
+              : '切换到卡片视图'
           }
         >
           {viewMode === 'default' ? <ViewAgenda /> : <ViewModule />}
@@ -579,8 +579,8 @@ const ArchivedTasks = () => {
             onClick={toggleMultiSelectMode}
             title={
               isMultiSelectMode
-                ? 'Exit Multi-select Mode (Ctrl+S)'
-                : 'Enable Multi-select Mode (Ctrl+S)'
+                ? '退出多选模式 (Ctrl+S)'
+                : '启用多选模式 (Ctrl+S)'
             }
           >
             {isMultiSelectMode ? <CheckBox /> : <CheckBoxOutlineBlank />}
@@ -652,8 +652,7 @@ const ArchivedTasks = () => {
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <CheckBox sx={{ color: 'primary.500' }} />
                 <Typography level='body-sm' fontWeight='md'>
-                  {selectedChores.size} task
-                  {selectedChores.size !== 1 ? 's' : ''} selected
+                  已选择 {selectedChores.size} 个任务
                 </Typography>
               </Box>
 
@@ -676,9 +675,9 @@ const ArchivedTasks = () => {
                     '--Button-paddingInline': '0.75rem',
                     position: 'relative',
                   }}
-                  title='Select all visible tasks (Ctrl+A)'
+                  title='选择所有可见任务 (Ctrl+A)'
                 >
-                  All
+                  全选
                   {showKeyboardShortcuts && (
                     <KeyboardShortcutHint
                       shortcut='A'
@@ -707,9 +706,9 @@ const ArchivedTasks = () => {
                     '--Button-paddingInline': '0.75rem',
                     position: 'relative',
                   }}
-                  title={`${selectedChores.size === 0 ? 'Close' : 'Clear'} multi-select (Esc)`}
+                  title={`${selectedChores.size === 0 ? '关闭' : '清除'} 多选 (Esc)`}
                 >
-                  {selectedChores.size === 0 ? 'Close' : 'Clear'}
+                  {selectedChores.size === 0 ? '关闭' : '清除'}
                   {showKeyboardShortcuts && (
                     <KeyboardShortcutHint
                       withCtrl={false}
@@ -753,9 +752,9 @@ const ArchivedTasks = () => {
                   '--Button-paddingInline': { xs: '0.75rem', sm: '1rem' },
                   position: 'relative',
                 }}
-                title='Restore selected tasks (R)'
+                title='恢复选中的任务 (R)'
               >
-                Restore
+                恢复
                 {showKeyboardShortcuts && selectedChores.size > 0 && (
                   <KeyboardShortcutHint
                     shortcut='R'
@@ -780,9 +779,9 @@ const ArchivedTasks = () => {
                   '--Button-paddingInline': { xs: '0.75rem', sm: '1rem' },
                   position: 'relative',
                 }}
-                title='Delete selected tasks (E)'
+                title='删除选中的任务 (E)'
               >
-                Delete
+                删除
                 {showKeyboardShortcuts && selectedChores.size > 0 && (
                   <KeyboardShortcutHint
                     shortcut='E'
@@ -819,12 +818,12 @@ const ArchivedTasks = () => {
             }}
           />
           <Typography level='title-md' gutterBottom>
-            {searchTerm ? 'No archived tasks found' : 'No archived tasks'}
+            {searchTerm ? '未找到已归档任务' : '暂无已归档任务'}
           </Typography>
           <Typography level='body-sm' color='text.secondary' sx={{ mb: 2 }}>
             {searchTerm
-              ? 'Try adjusting your search terms'
-              : 'Archived tasks will appear here when you archive them from the main task list'}
+              ? '尝试调整搜索条件'
+              : '当您从主任务列表归档任务时，它们会出现在这里'}
           </Typography>
           {searchTerm && (
             <Button
@@ -832,16 +831,15 @@ const ArchivedTasks = () => {
               variant='outlined'
               color='neutral'
             >
-              Clear search
+              清除搜索
             </Button>
           )}
         </Box>
       ) : (
         <Box>
           <Typography level='body-sm' color='text.secondary' sx={{ mb: 2 }}>
-            {filteredChores.length} archived task
-            {filteredChores.length !== 1 ? 's' : ''}
-            {searchTerm && ` matching "${searchTerm}"`}
+            共 {filteredChores.length} 个已归档任务
+            {searchTerm && ` 匹配 "${searchTerm}"`}
           </Typography>
 
           <List sx={{ gap: viewMode === 'compact' ? 0 : 1 }}>

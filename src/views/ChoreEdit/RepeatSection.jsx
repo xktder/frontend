@@ -34,8 +34,8 @@ const FREQUENCY_TYPES_RADIOS = [
 
 const FREQUENCY_TYPE_MESSAGE = {
   adaptive:
-    'This chore will be scheduled dynamically based on previous completion dates.',
-  custom: 'This chore will be scheduled based on a custom frequency.',
+    '此任务将根据之前的完成日期动态安排。',
+  custom: '此任务将根据自定义频率安排。',
 }
 const REPEAT_ON_TYPE = ['interval', 'days_of_the_week', 'day_of_the_month']
 const MONTHS = [
@@ -64,16 +64,16 @@ const DAYS = [
 ]
 
 const WEEK_PATTERNS = {
-  every_week: 'Every week',
-  nth_day_of_month: 'Specific occurrences in the month',
+  every_week: '每周',
+  nth_day_of_month: '月中特定时间',
 }
 
 const DAY_OCCURRENCE_OPTIONS = [
-  { value: 1, label: '1st occurrence' },
-  { value: 2, label: '2nd occurrence' },
-  { value: 3, label: '3rd occurrence' },
-  { value: 4, label: '4th occurrence' },
-  { value: -1, label: 'Last occurrence' },
+  { value: 1, label: '第1次' },
+  { value: 2, label: '第2次' },
+  { value: 3, label: '第3次' },
+  { value: 4, label: '第4次' },
+  { value: -1, label: '最后一次' },
 ]
 // Helper function to generate schedule preview text
 const generateSchedulePreview = metadata => {
@@ -142,7 +142,7 @@ const RepeatOnSections = ({
         flexDirection: 'column',
       }}
     >
-      <Typography level='h5'>Time of day: </Typography>
+      <Typography level='h5'>时间: </Typography>
       <Input
         type='time'
         sx={{ width: '150px' }}
@@ -165,7 +165,7 @@ const RepeatOnSections = ({
       return (
         <>
           <Grid item sm={12} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography level='h5'>Every: </Typography>
+            <Typography level='h5'>每隔: </Typography>
             <Input
               slotProps={{
                 input: {
@@ -268,8 +268,8 @@ const RepeatOnSections = ({
                 disableIcon
               >
                 {frequencyMetadata?.days?.length === 7
-                  ? 'Unselect All'
-                  : 'Select All'}
+                  ? '取消全选'
+                  : '全选'}
               </Button>
             </Card>
           </Grid>
@@ -296,13 +296,12 @@ const RepeatOnSections = ({
                     <Radio value={value} label={label} variant='soft' />
                     {value === 'every_week' && (
                       <FormHelperText>
-                        Task repeats every week on selected days
+                        任务在选定的日期每周重复
                       </FormHelperText>
                     )}
                     {value === 'nth_day_of_month' && (
                       <FormHelperText>
-                        Task repeats on specific day occurrences each month
-                        (e.g., 1st Monday, 3rd Friday)
+                        任务在每月的特定日期重复（例如，第一个周一，第三个周五）
                       </FormHelperText>
                     )}
                   </FormControl>
@@ -312,10 +311,10 @@ const RepeatOnSections = ({
               {frequencyMetadata?.weekPattern === 'nth_day_of_month' && (
                 <Box mt={2}>
                   <Typography level='body-sm' mb={1}>
-                    Select which occurrences of the selected days:
+                    选择选定日期的哪一次:
                   </Typography>
                   <Typography level='body-xs' color='neutral' mb={2}>
-                    Example: "1st Monday" means the first Monday of each month
+                    例如: "第1个周一"表示每个月的第一个周一
                   </Typography>
                   <Card>
                     <List
@@ -387,8 +386,8 @@ const RepeatOnSections = ({
                     >
                       {frequencyMetadata?.occurrences?.length ===
                       DAY_OCCURRENCE_OPTIONS.length
-                        ? 'Unselect All'
-                        : 'Select All'}
+                        ? '取消全选'
+                        : '全选'}
                     </Button>
                   </Card>
                 </Box>
@@ -485,8 +484,8 @@ const RepeatOnSections = ({
                 disableIcon
               >
                 {frequencyMetadata?.months?.length === 12
-                  ? 'Unselect All'
-                  : 'Select All'}
+                  ? '取消全选'
+                  : '全选'}
               </Button>
             </Card>
           </Grid>
@@ -497,7 +496,7 @@ const RepeatOnSections = ({
               mb: 1.5,
             }}
           >
-            <Typography>on the </Typography>
+            <Typography>在上述月份的第 </Typography>
             <Input
               sx={{ width: '80px' }}
               type='number'
@@ -513,7 +512,7 @@ const RepeatOnSections = ({
                 onFrequencyUpdate(e.target.value)
               }}
             />
-            <Typography>of the above month/s</Typography>
+            <Typography>天</Typography>
           </Box>
           {timePickerComponent}
         </>
@@ -542,7 +541,7 @@ const RepeatSection = ({
 
   return (
     <Box mt={2}>
-      <Typography level='h4'>Repeat :</Typography>
+      <Typography level='h4'>重复:</Typography>
       <FormControl sx={{ mt: 1 }}>
         <Checkbox
           onChange={e => {
@@ -555,16 +554,16 @@ const RepeatSection = ({
           checked={!['once', 'trigger'].includes(frequencyType)}
           value={!['once', 'trigger'].includes(frequencyType)}
           overlay
-          label='Repeat this task'
+          label='重复此任务'
         />
         <FormHelperText>
-          Is this something needed to be done regularly?
+          这是需要定期完成的任务吗？
         </FormHelperText>
       </FormControl>
       {!['once', 'trigger'].includes(frequencyType) && (
         <>
           <Card sx={{ mt: 1 }}>
-            <Typography level='h5'>How often should it be repeated?</Typography>
+            <Typography level='h5'>应该多久重复一次？</Typography>
 
             <List
               orientation='horizontal'
@@ -622,7 +621,7 @@ const RepeatSection = ({
                 <>
                   <Grid container spacing={1} mt={2}>
                     <Grid item>
-                      <Typography>Repeat on:</Typography>
+                      <Typography>重复于:</Typography>
                       <Box
                         sx={{ display: 'flex', alignItems: 'center', gap: 2 }}
                       >
@@ -748,24 +747,22 @@ const RepeatSection = ({
           value={frequencyType === 'trigger'}
           disabled={!isPlusAccount(userProfile)}
           overlay
-          label='Trigger this task based on a thing state'
+          label='根据设备状态触发此任务'
         />
         <FormHelperText
           sx={{
             opacity: !isPlusAccount(userProfile) ? 0.5 : 1,
           }}
         >
-          Is this something that should be done when a thing state changes?{' '}
-          {userProfile && !isPlusAccount(userProfile) && (
+          这是当设备状态改变时应该完成的任务吗？{userProfile && !isPlusAccount(userProfile) && (
             <Chip variant='soft' color='warning'>
-              Plus Feature
+              Plus功能
             </Chip>
           )}
         </FormHelperText>
         {!isPlusAccount(userProfile) && (
           <Typography level='body-sm' color='warning' sx={{ mt: 1 }}>
-            Thing-based triggers are not available in the Basic plan. Upgrade to
-            Plus to automatically trigger tasks when device states change.
+            基础套餐不提供基于设备的触发功能。升级到Plus套餐以在设备状态改变时自动触发任务。
           </Typography>
         )}
       </FormControl>

@@ -468,9 +468,9 @@ const ChoreEdit = () => {
 
         <Box mb={3}>
           <FormControl error={errors.name}>
-            <Typography level='h4'>Name</Typography>
+            <Typography level='h4'>任务名称</Typography>
             <Typography level='body-md'>
-              What is the name of this task?
+              这个任务的名称是什么？
             </Typography>
             <Input value={name} onChange={e => setName(e.target.value)} />
             <FormHelperText error>{errors.name}</FormHelperText>
@@ -479,8 +479,8 @@ const ChoreEdit = () => {
 
         <Box mb={3}>
           <FormControl error={errors.description}>
-            <Typography level='h4'>Description</Typography>
-            <Typography level='body-md'>What is this task about?</Typography>
+            <Typography level='h4'>任务描述</Typography>
+            <Typography level='body-md'>这个任务是关于什么的？</Typography>
             <RichTextEditor
               value={description}
               onChange={setDescription}
@@ -492,8 +492,8 @@ const ChoreEdit = () => {
         </Box>
 
         <Box mb={3}>
-          <Typography level='h4'>Priority</Typography>
-          <Typography level='body-md'>How important is this task?</Typography>
+          <Typography level='h4'>优先级</Typography>
+          <Typography level='body-md'>这个任务有多重要？</Typography>
 
           {/* Priority Chip Selection */}
           <Box
@@ -545,9 +545,9 @@ const ChoreEdit = () => {
         </Box>
 
         <Box mb={3}>
-          <Typography level='h4'>Labels</Typography>
+          <Typography level='h4'>标签</Typography>
           <Typography level='body-md'>
-            Things to remember about this task or to tag it
+            关于这个任务需要记住的事项或标记
           </Typography>
           <Select
             multiple
@@ -614,7 +614,7 @@ const ChoreEdit = () => {
         </Box>
 
         <Box>
-          <Typography level='h4'>Sub Tasks</Typography>
+          <Typography level='h4'>子任务</Typography>
           {/* <FormControl sx={{ mt: 1 }}>
             <Checkbox
               onChange={e => {
@@ -650,8 +650,8 @@ const ChoreEdit = () => {
       {/* Section 2: Assignment & Responsibility */}
       <Box mb={4}>
         <Box mb={3}>
-          <Typography level='h4'>Assignees</Typography>
-          <Typography level='body-md'>Who can do this task?</Typography>
+          <Typography level='h4'>执行者</Typography>
+          <Typography level='body-md'>谁可以执行这个任务？</Typography>
           <Card>
             <List
               orientation='horizontal'
@@ -729,7 +729,7 @@ const ChoreEdit = () => {
                   setShowSaveAssigneeDefault(false)
                 }}
               >
-                Remember for Future Tasks
+                记住用于未来任务
               </Button>
             </Box>
           )}
@@ -738,9 +738,9 @@ const ChoreEdit = () => {
         {assignees.length > 1 && (
           <>
             <Box mb={3}>
-              <Typography level='h4'>Currently Assigned To</Typography>
+              <Typography level='h4'>当前分配给</Typography>
               <Typography level='body-md'>
-                Who is assigned the next due?
+                下一个任务分配给谁？
               </Typography>
               <Select
                 placeholder={
@@ -768,9 +768,9 @@ const ChoreEdit = () => {
             </Box>
 
             <Box>
-              <Typography level='h4'>Assignment Strategy</Typography>
+              <Typography level='h4'>分配策略</Typography>
               <Typography level='body-md'>
-                How to pick the next assignee for the following task?
+                如何为后续任务选择执行者？
               </Typography>
               <Card>
                 <List
@@ -832,11 +832,11 @@ const ChoreEdit = () => {
 
         <Box mt={3} mb={3}>
           <Typography level='h4'>
-            {REPEAT_ON_TYPE.includes(frequencyType) ? 'Start Date' : 'Due Date'}
+            {REPEAT_ON_TYPE.includes(frequencyType) ? '开始日期' : '截止日期'}
           </Typography>
           {frequencyType === 'trigger' && !dueDate && (
             <Typography level='body-sm'>
-              Due Date will be set when the trigger of the thing is met
+              当触发条件满足时将设置截止日期
             </Typography>
           )}
 
@@ -853,10 +853,10 @@ const ChoreEdit = () => {
                 defaultChecked={dueDate !== null}
                 checked={dueDate !== null}
                 overlay
-                label='Give this task a due date'
+                label='为这个任务设置截止日期'
               />
               <FormHelperText>
-                task needs to be completed by a specific time.
+                任务需要在特定时间前完成。
               </FormHelperText>
             </FormControl>
           )}
@@ -864,8 +864,8 @@ const ChoreEdit = () => {
             <FormControl error={Boolean(errors.dueDate)}>
               <Typography level='body-md'>
                 {REPEAT_ON_TYPE.includes(frequencyType)
-                  ? 'When does this task start?'
-                  : 'When is the next first time this task is due?'}
+                  ? '这个任务何时开始？'
+                  : '这个任务下一次截止时间是什么时候？'}
               </Typography>
               <Input
                 type='datetime-local'
@@ -879,7 +879,7 @@ const ChoreEdit = () => {
 
         {dueDate && (
           <Box mb={3}>
-            <Typography level='h4'>Completion Window</Typography>
+            <Typography level='h4'>完成时间窗口</Typography>
             <FormControl orientation='horizontal'>
               <Switch
                 checked={completionWindow != -1}
@@ -899,10 +899,10 @@ const ChoreEdit = () => {
               />
               <div>
                 <Typography level='body-md'>
-                  Completion window (hours)
+                  完成时间窗口（小时）
                 </Typography>
                 <FormHelperText sx={{ mt: 0 }}>
-                  {"Set a time window that task can't be completed before"}
+                  设置任务在截止前不能被完成的时间窗口
                 </FormHelperText>
               </div>
             </FormControl>
@@ -914,7 +914,7 @@ const ChoreEdit = () => {
                     ml: 4,
                   }}
                 >
-                  <Typography level='body-sm'>Hours:</Typography>
+                  <Typography level='body-sm'>小时:</Typography>
                   <Input
                     type='number'
                     value={completionWindow}
@@ -925,7 +925,7 @@ const ChoreEdit = () => {
                         max: 24 * 7,
                       },
                     }}
-                    placeholder='Hours'
+                    placeholder='小时'
                     onChange={e => {
                       setCompletionWindow(parseInt(e.target.value))
                     }}
@@ -938,9 +938,9 @@ const ChoreEdit = () => {
 
         {!['once', 'no_repeat'].includes(frequencyType) && (
           <Box>
-            <Typography level='h4'>Scheduling Preferences</Typography>
+            <Typography level='h4'>调度偏好</Typography>
             <Typography level='body-md'>
-              How to reschedule the next due date?
+              如何重新安排下一个截止日期？
             </Typography>
             <RadioGroup name='tiers' sx={{ gap: 1, '& > div': { p: 1 } }}>
               <FormControl>
@@ -948,11 +948,10 @@ const ChoreEdit = () => {
                   overlay
                   checked={!isRolling}
                   onClick={() => setIsRolling(false)}
-                  label='Reschedule from due date'
+                  label='从截止日期重新安排'
                 />
                 <FormHelperText>
-                  the next task will be scheduled from the original due date,
-                  even if the previous task was completed late
+                  下一个任务将从原始截止日期安排，即使前一个任务完成得较晚
                 </FormHelperText>
               </FormControl>
               <FormControl>
@@ -960,11 +959,10 @@ const ChoreEdit = () => {
                   overlay
                   checked={isRolling}
                   onClick={() => setIsRolling(true)}
-                  label='Reschedule from completion date'
+                  label='从完成日期重新安排'
                 />
                 <FormHelperText>
-                  the next task will be scheduled from the actual completion
-                  date of the previous task
+                  下一个任务将从上一个任务的实际完成日期安排
                 </FormHelperText>
               </FormControl>
             </RadioGroup>
@@ -973,11 +971,10 @@ const ChoreEdit = () => {
         {/* Section 3.1: Notifications */}
 
         <Box mb={3}>
-          <Typography level='h4'>Notifications</Typography>
+          <Typography level='h4'>通知</Typography>
           {!isPlusAccount(userProfile) && (
             <Typography level='body-sm' color='warning' sx={{ mb: 1 }}>
-              Task notifications are not available in the Basic plan. Upgrade to
-              Plus to receive reminders when tasks are due or completed.
+              基础套餐不提供任务通知功能。升级到Plus套餐以在任务截止或完成时接收提醒。
             </Typography>
           )}
 
@@ -993,14 +990,14 @@ const ChoreEdit = () => {
               checked={isNotificable}
               disabled={!isPlusAccount(userProfile)}
               overlay
-              label='Notify for this task'
+              label='为此任务启用通知'
             />
             <FormHelperText
               sx={{
                 opacity: !isPlusAccount(userProfile) ? 0.5 : 1,
               }}
             >
-              When should receive notifications for this task
+              何时为此任务接收通知
             </FormHelperText>
           </FormControl>
         </Box>
@@ -1015,7 +1012,7 @@ const ChoreEdit = () => {
           >
             <Card variant='outlined'>
               <Typography level='h4' mb={2}>
-                Notification Schedule
+                通知时间安排
               </Typography>
               <Box sx={{ p: 0.5 }}>
                 <NotificationTemplate
@@ -1033,16 +1030,16 @@ const ChoreEdit = () => {
               </Box>
 
               <Typography level='h4' mt={3} mb={2}>
-                Who to Notify
+                通知对象
               </Typography>
               <FormControl>
                 <Checkbox
                   overlay
                   disabled={true}
                   checked={true}
-                  label='All Assignees'
+                  label='所有执行者'
                 />
-                <FormHelperText>Notify all assignees</FormHelperText>
+                <FormHelperText>通知所有执行者</FormHelperText>
               </FormControl>
 
               <FormControl>
@@ -1063,9 +1060,9 @@ const ChoreEdit = () => {
                       ? notificationMetadata?.circleGroup
                       : false
                   }
-                  label='Specific Group'
+                  label='特定群组'
                 />
-                <FormHelperText>Notify a specific group</FormHelperText>
+                <FormHelperText>通知特定群组</FormHelperText>
               </FormControl>
 
               {notificationMetadata?.circleGroup && (
@@ -1075,11 +1072,11 @@ const ChoreEdit = () => {
                     ml: 4,
                   }}
                 >
-                  <Typography level='body-sm'>Telegram Group ID:</Typography>
+                  <Typography level='body-sm'>Telegram群组ID:</Typography>
                   <Input
                     type='number'
                     value={notificationMetadata?.circleGroupID}
-                    placeholder='Telegram Group ID'
+                    placeholder='Telegram群组ID'
                     onChange={e => {
                       setNotificationMetadata({
                         ...notificationMetadata,
@@ -1104,11 +1101,11 @@ const ChoreEdit = () => {
             pb: 1,
           }}
         >
-          Task Settings:
+          任务设置:
         </Typography>
 
         <Box mb={3}>
-          <Typography level='h4'>Points System</Typography>
+          <Typography level='h4'>积分系统</Typography>
           <FormControl sx={{ mt: 1 }}>
             <Checkbox
               onChange={e => {
@@ -1120,11 +1117,10 @@ const ChoreEdit = () => {
               }}
               checked={points > -1}
               overlay
-              label='Assign points for completion'
+              label='为完成任务分配积分'
             />
             <FormHelperText>
-              Assign points to this task and user will earn points when they
-              completed it
+              为这个任务分配积分，用户完成时将获得积分
             </FormHelperText>
           </FormControl>
           {points != -1 && (
@@ -1135,7 +1131,7 @@ const ChoreEdit = () => {
                   ml: 4,
                 }}
               >
-                <Typography level='body-sm'>Points:</Typography>
+                <Typography level='body-sm'>积分:</Typography>
                 <Input
                   type='number'
                   value={points}
@@ -1146,7 +1142,7 @@ const ChoreEdit = () => {
                       max: 1000,
                     },
                   }}
-                  placeholder='Points'
+                  placeholder='积分'
                   onChange={e => {
                     setPoints(parseInt(e.target.value))
                   }}
@@ -1157,7 +1153,7 @@ const ChoreEdit = () => {
         </Box>
 
         <Box mb={3}>
-          <Typography level='h4'>Approval Requirement</Typography>
+          <Typography level='h4'>审批要求</Typography>
           <FormControl sx={{ mt: 1 }}>
             <Checkbox
               onChange={e => {
@@ -1165,18 +1161,17 @@ const ChoreEdit = () => {
               }}
               checked={requireApproval}
               overlay
-              label='Require admin approval'
+              label='需要管理员审批'
             />
             <FormHelperText>
-              This task will need approval from an admin before being marked as
-              complete
+              这个任务在标记为完成之前需要管理员审批
             </FormHelperText>
           </FormControl>
         </Box>
 
         <Box>
-          <Typography level='h4'>Privacy Settings</Typography>
-          <Typography level='body-md'>Who can see this task?</Typography>
+          <Typography level='h4'>隐私设置</Typography>
+          <Typography level='body-md'>谁可以看到这个任务？</Typography>
           <RadioGroup
             name='isPrivate'
             value={isPrivate}
@@ -1190,20 +1185,20 @@ const ChoreEdit = () => {
             }}
           >
             <FormControl>
-              <Radio overlay value={false} label='Public' />
-              <FormHelperText>Everyone in your circle</FormHelperText>
+              <Radio overlay value={false} label='公开' />
+              <FormHelperText>圈子中的每个人</FormHelperText>
             </FormControl>
             <FormControl>
               <Radio
                 overlay
                 disabled={assignees.length === 0}
                 value={true}
-                label='Limited'
+                label='限制'
               />
               <FormHelperText>
-                You and others that are assigned to the task
+                您和分配给任务的其他人
                 {assignees.length === 0
-                  ? ' (No assignees selected, Limited option is disabled)'
+                  ? '（未选择执行者，限制选项被禁用）'
                   : ''}
               </FormHelperText>
             </FormControl>
@@ -1231,7 +1226,7 @@ const ChoreEdit = () => {
                   setShowSavePrivacyDefault(false)
                 }}
               >
-                Remember for Future Tasks
+                记住用于未来任务
               </Button>
             </Box>
           )}
@@ -1248,25 +1243,25 @@ const ChoreEdit = () => {
             }}
           >
             <Typography level='body1'>
-              Created by{' '}
+              由{' '}
               <Chip variant='solid'>
                 {membersData.res.find(f => f.userId === createdBy)?.displayName}
               </Chip>{' '}
-              {moment(chore.createdAt).fromNow()}
+              创建于 {moment(chore.createdAt).fromNow()}
             </Typography>
             {(chore.updatedAt && updatedBy > 0 && (
               <>
                 <Divider sx={{ my: 1 }} />
 
                 <Typography level='body1'>
-                  Updated by{' '}
+                  由{' '}
                   <Chip variant='solid'>
                     {
                       membersData.res.find(f => f.userId === updatedBy)
                         ?.displayName
                     }
                   </Chip>{' '}
-                  {moment(chore.updatedAt).fromNow()}
+                  更新于 {moment(chore.updatedAt).fromNow()}
                 </Typography>
               </>
             )) || <></>}
@@ -1276,9 +1271,6 @@ const ChoreEdit = () => {
 
       <Divider sx={{ mb: 9 }} />
 
-      {/* <Box mt={2} alignSelf={'flex-start'} display='flex' gap={2}>
-        <Button onClick={SaveChore}>Save</Button>
-      </Box> */}
       <Sheet
         variant='outlined'
         sx={{
@@ -1286,14 +1278,14 @@ const ChoreEdit = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          p: 2, // padding
-          paddingBottom: getSafeBottomPadding(2), // safe area padding for iOS
+          p: 2,
+          paddingBottom: getSafeBottomPadding(2),
           display: 'flex',
           justifyContent: 'flex-end',
           gap: 2,
           'z-index': 1000,
           bgcolor: 'background.body',
-          boxShadow: 'md', // Add a subtle shadow
+          boxShadow: 'md',
         }}
       >
         {choreId > 0 && (
@@ -1306,7 +1298,7 @@ const ChoreEdit = () => {
                   archiveChore.mutate(choreId)
                 }}
               >
-                Archive
+                归档
               </Button>
             ) : (
               <Button
@@ -1316,18 +1308,17 @@ const ChoreEdit = () => {
                   unarchiveChore.mutate(choreId)
                 }}
               >
-                Unarchive
+                取消归档
               </Button>
             )}
             <Button
               color='danger'
               variant='solid'
               onClick={() => {
-                // confirm before deleting:
                 handleDelete()
               }}
             >
-              Delete
+              删除
             </Button>
           </>
         )}
@@ -1338,10 +1329,10 @@ const ChoreEdit = () => {
             window.history.back()
           }}
         >
-          Cancel
+          取消
         </Button>
         <Button color='primary' variant='solid' onClick={HandleSaveChore}>
-          {choreId > 0 ? 'Save' : 'Create'}
+          {choreId > 0 ? '保存' : '创建'}
         </Button>
       </Sheet>
       <ConfirmationModal config={confirmModelConfig} />

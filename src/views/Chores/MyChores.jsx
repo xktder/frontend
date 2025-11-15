@@ -537,58 +537,58 @@ const MyChores = () => {
     const notifications = {
       completed: {
         type: 'success',
-        title: 'Task Completed',
-        message: 'Great job! The task has been marked as completed.',
+        title: '任务已完成',
+        message: '干得好！任务已标记为完成。',
       },
       skipped: {
         type: 'success',
-        title: 'Task Skipped',
-        message: 'The task has been moved to the next due date.',
+        title: '任务已跳过',
+        message: '任务已移至下一个截止日期。',
       },
       rescheduled: {
         type: 'success',
-        title: 'Task Rescheduled',
-        message: 'The task due date has been updated successfully.',
+        title: '任务已重新安排',
+        message: '任务截止日期已成功更新。',
       },
       'due-date-removed': {
         type: 'success',
-        title: 'Task Unplanned',
-        message: 'The task is now unplanned and has no due date.',
+        title: '任务未计划',
+        message: '任务现在未计划，没有截止日期。',
       },
       unarchive: {
         type: 'success',
-        title: 'Task Restored',
-        message: 'The task has been restored and is now active.',
+        title: '任务已恢复',
+        message: '任务已恢复，现在处于活动状态。',
       },
       archive: {
         type: 'success',
-        title: 'Task Archived',
-        message: 'The task has been archived and hidden from the active list.',
+        title: '任务已归档',
+        message: '任务已归档，已从活动列表中隐藏。',
       },
       started: {
         type: 'success',
-        title: 'Task Started',
-        message: 'The task has been marked as started.',
+        title: '任务已开始',
+        message: '任务已标记为开始。',
       },
       paused: {
         type: 'warning',
-        title: 'Task Paused',
-        message: 'The task has been paused.',
+        title: '任务已暂停',
+        message: '任务已暂停。',
       },
       approved: {
         type: 'success',
-        title: 'Task Approved',
-        message: 'The task has been approved.',
+        title: '任务已批准',
+        message: '任务已批准。',
       },
       rejected: {
         type: 'warning',
-        title: 'Task Rejected',
-        message: 'The task has been rejected.',
+        title: '任务被拒绝',
+        message: '任务被拒绝。',
       },
       deleted: {
         type: 'success',
-        title: 'Task Deleted',
-        message: 'The task has been deleted.',
+        title: '任务已删除',
+        message: '任务已被删除。',
       },
     }
 
@@ -1537,7 +1537,7 @@ const MyChores = () => {
         >
           <Input
             slotProps={{ input: { ref: searchInputRef } }}
-            placeholder='Search'
+            placeholder='搜索'
             value={searchTerm}
             onFocus={() => {
               setShowSearchFilter(true)
@@ -1569,28 +1569,8 @@ const MyChores = () => {
               </Box>
             }
           />
-
-          {/* {activeTextField != 'search' && (
-            <IconButton
-              variant='outlined'
-              color='neutral'
-              size='sm'
-              sx={{
-                height: 24,
-                borderRadius: 24,
-              }}
-              onClick={() => {
-                setActiveTextFieldWithCache('search')
-                setSearchInputFocus(searchInputFocus + 1)
-
-                searchInputRef?.current?.focus()
-              }}
-            >
-              <Search />
-            </IconButton>
-          )} */}
           <SortAndGrouping
-            title='Group by'
+            title='分组依据'
             k={'icon-menu-group-by'}
             icon={<Sort />}
             selectedItem={selectedChoreSection}
@@ -1605,8 +1585,6 @@ const MyChores = () => {
             }}
             mouseClickHandler={handleMenuOutsideClick}
           />
-
-          {/* View Mode Toggle Button */}
           <IconButton
             variant='outlined'
             color='neutral'
@@ -1648,8 +1626,8 @@ const MyChores = () => {
               onClick={toggleMultiSelectMode}
               title={
                 isMultiSelectMode
-                  ? 'Exit Multi-select Mode (Ctrl+S)'
-                  : 'Enable Multi-select Mode (Ctrl+S)'
+                  ? '退出多选模式 (Ctrl+S)'
+                  : '启用多选模式 (Ctrl+S)'
               }
             >
               {isMultiSelectMode ? <CheckBox /> : <CheckBoxOutlineBlank />}
@@ -1679,84 +1657,84 @@ const MyChores = () => {
           }}
         >
           <div className='flex gap-4'>
-            <div className='grid flex-1 grid-cols-3 gap-4'>
-              <IconButtonWithMenu
-                label={' Priority'}
-                k={'icon-menu-priority-filter'}
-                icon={<PriorityHigh />}
-                options={Priorities}
-                selectedItem={searchFilter}
-                onItemSelect={selected => {
-                  handleLabelFiltering({ priority: selected.value })
-                }}
-                mouseClickHandler={handleMenuOutsideClick}
-                isActive={searchFilter.startsWith('Priority: ')}
-              />
+          <div className='grid flex-1 grid-cols-3 gap-4'>
+            <IconButtonWithMenu
+              label={' 优先级'}
+              k={'icon-menu-priority-filter'}
+              icon={<PriorityHigh />}
+              options={Priorities}
+              selectedItem={searchFilter}
+              onItemSelect={selected => {
+                handleLabelFiltering({ priority: selected.value })
+              }}
+              mouseClickHandler={handleMenuOutsideClick}
+              isActive={searchFilter.startsWith('Priority: ')}
+            />
 
-              <IconButtonWithMenu
-                k={'icon-menu-labels-filter'}
-                label={' Labels'}
-                icon={<Style />}
-                options={userLabels}
-                selectedItem={searchFilter}
-                onItemSelect={selected => {
-                  handleLabelFiltering({ label: selected })
-                }}
-                isActive={searchFilter.startsWith('Label: ')}
-                mouseClickHandler={handleMenuOutsideClick}
-                useChips
-              />
+            <IconButtonWithMenu
+              k={'icon-menu-labels-filter'}
+              label={' 标签'}
+              icon={<Style />}
+              options={userLabels}
+              selectedItem={searchFilter}
+              onItemSelect={selected => {
+                handleLabelFiltering({ label: selected })
+              }}
+              isActive={searchFilter.startsWith('Label: ')}
+              mouseClickHandler={handleMenuOutsideClick}
+              useChips
+            />
 
-              <Button
-                onClick={handleFilterMenuOpen}
-                variant='outlined'
-                startDecorator={<Grain />}
-                color={
-                  searchFilter && FILTERS[searchFilter] && searchFilter != 'All'
-                    ? 'primary'
-                    : 'neutral'
-                }
-                size='sm'
-                sx={{
-                  height: 24,
-                  borderRadius: 24,
-                }}
+            <Button
+              onClick={handleFilterMenuOpen}
+              variant='outlined'
+              startDecorator={<Grain />}
+              color={
+                searchFilter && FILTERS[searchFilter] && searchFilter != 'All'
+                  ? 'primary'
+                  : 'neutral'
+              }
+              size='sm'
+              sx={{
+                height: 24,
+                borderRadius: 24,
+              }}
+            >
+              {' 其他'}
+            </Button>
+
+            <List
+              orientation='horizontal'
+              wrap
+              sx={{
+                mt: 0.2,
+              }}
+            >
+              <Menu
+                ref={menuRef}
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleFilterMenuClose}
               >
-                {' Other'}
-              </Button>
-
-              <List
-                orientation='horizontal'
-                wrap
-                sx={{
-                  mt: 0.2,
-                }}
-              >
-                <Menu
-                  ref={menuRef}
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={handleFilterMenuClose}
-                >
-                  {Object.keys(FILTERS).map((filter, index) => (
-                    <MenuItem
-                      key={`filter-list-${filter}-${index}`}
-                      onClick={() => {
-                        const filterFunction = FILTERS[filter]
-                        const filteredChores =
-                          filterFunction.length === 2
-                            ? filterFunction(chores, userProfile.id)
-                            : filterFunction(chores)
-                        setFilteredChores(filteredChores)
-                        setSearchFilter(filter)
-                        handleFilterMenuClose()
-                      }}
+                {Object.keys(FILTERS).map((filter, index) => (
+                  <MenuItem
+                    key={`filter-list-${filter}-${index}`}
+                    onClick={() => {
+                      const filterFunction = FILTERS[filter]
+                      const filteredChores =
+                        filterFunction.length === 2
+                          ? filterFunction(chores, userProfile.id)
+                          : filterFunction(chores)
+                      setFilteredChores(filteredChores)
+                      setSearchFilter(filter)
+                      handleFilterMenuClose()
+                    }}
+                  >
+                    {filter}
+                    <Chip
+                      color={searchFilter === filter ? 'primary' : 'neutral'}
                     >
-                      {filter}
-                      <Chip
-                        color={searchFilter === filter ? 'primary' : 'neutral'}
-                      >
-                        {FILTERS[filter].length === 2
+                      {FILTERS[filter].length === 2
                           ? FILTERS[filter](chores, userProfile.id).length
                           : FILTERS[filter](chores).length}
                       </Chip>
@@ -1772,7 +1750,7 @@ const MyChores = () => {
                           setSearchFilter('All')
                         }}
                       >
-                        Cancel All Filters
+                        取消所有筛选
                       </MenuItem>
                     ))}
                 </Menu>
@@ -2443,7 +2421,7 @@ const MyChores = () => {
             onClick={() => {
               Navigate(`/chores/create`)
             }}
-            title='Create new chore (Cmd+C)'
+            title='创建新任务 (Cmd+C)'
           >
             <Add />
             <KeyboardShortcutHint
